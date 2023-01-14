@@ -15,7 +15,7 @@ class Trip(models.Model):
       return self.destination
   
 
-class CheckList(models.Model):
+class CheckListItem(models.Model):
   trip = models.ForeignKey(Trip, on_delete=models.CASCADE)
   item = models.CharField(max_length=255)
   quantity = models.IntegerField(default=1)

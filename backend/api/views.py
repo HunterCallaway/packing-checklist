@@ -30,13 +30,13 @@ def get_routes(request):
             'description': 'Creates a new trip with data sent in post request.'
         },
         {
-            'Endpoint': '/trips/id/item/create/',
+            'Endpoint': '/trips/id/check_list_item/create/',
             'method': 'POST',
             'body': {'body': ""},
             'description': 'Creates a new item with data sent in post request.'
         },
         {
-            'Endpoint': '/trips/id/item/update/',
+            'Endpoint': '/trips/id/check_list_item/update/',
             'method': 'PUT',
             'body': {'body': ""},
             'description': 'Updates an existing itm with data sent in put request.'
@@ -48,7 +48,7 @@ def get_routes(request):
             'description': 'Deletes an exiting trip.'
         },
         {
-            'Endpoint': '/trips/id/item/delete/',
+            'Endpoint': '/trips/id/check_list_item/delete/',
             'method': 'DELETE',
             'body': None,
             'description': 'Deletes an exiting item.'
