@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from rest_framework.response import Response
+from rest_framework.decorators import api_view
 
 # Create your views here.
 
 '''
 This view will return a list of objects that contain information about our routes.
-We set the safe parameter to False to receive any Python data type.
+The Django REST Framework decorator is set to only receive GET requests.
 '''
+@api_view(['GET'])
 def get_routes(request):
   routes = [
         {
