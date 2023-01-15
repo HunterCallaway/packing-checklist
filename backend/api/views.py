@@ -1,12 +1,17 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from .models import Trip
 
-# Create your views here.
+'''
+DRY Notes:
+1. The Django REST Framework `api_view` decorators allow us to return a `Response` object
+    (rather than Django's HttpResponse) and to specify the HTTP method(s) the view will accept.
+2. The serializers convert our Python objects into JSON.
+'''
 
 '''
 This view will return a list of objects that contain information about our routes.
-The Django REST Framework decorator is set to only receive GET requests.
 '''
 @api_view(['GET'])
 def get_routes(request):
@@ -55,3 +60,11 @@ def get_routes(request):
         },
     ]
   return Response(routes)
+
+'''
+This view will return all instances of the Trip model in our database.
+'''
+@api_view(['GET'])
+def get_trips(request):
+    trips = Trip.objects.all()
+    return Response('Trips')
