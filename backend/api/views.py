@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import Trip
+from .serializers import TripSerializer, CheckListItemSerializer
 
 '''
 DRY Notes:
@@ -63,8 +64,12 @@ def get_routes(request):
 
 '''
 This view will return all instances of the Trip model in our database.
+Notes:
+We use the `many=True` parameter with `TripSerializer`,
+  because we want to serialize multiple objects.
 '''
 @api_view(['GET'])
 def get_trips(request):
     trips = Trip.objects.all()
-    return Response('Trips')
+    serializer = TripSerializer(trips, many=True)
+    return Response(serializer.data)
