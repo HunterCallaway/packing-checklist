@@ -73,3 +73,14 @@ def get_trips(request):
     trips = Trip.objects.all()
     serializer = TripSerializer(trips, many=True)
     return Response(serializer.data)
+
+'''
+This view will return a specified Trip instance.
+We use the `many=False` parameter with `TripSerializer`,
+  because we only want to serialize a single object.
+'''
+@api_view(['GET'])
+def get_trip(request, pk):
+    trip = Trip.objects.get(id=pk)
+    serializer = TripSerializer(trip, many=False)
+    return Response(serializer.data)
