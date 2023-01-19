@@ -1,6 +1,9 @@
 #React
 .DS_STORE
 node_modules
+/node_modules
+/.pnp
+.pnp.js
 scripts/flow/*/.flowconfig
 .flowconfig
 *~
@@ -9,8 +12,10 @@ scripts/flow/*/.flowconfig
 _SpecRunner.html
 __benchmarks__
 build/
+/build
 remote-repo/
 coverage/
+/coverage
 .module-cache
 fixtures/dom/public/react-dom.js
 fixtures/dom/public/react.js
