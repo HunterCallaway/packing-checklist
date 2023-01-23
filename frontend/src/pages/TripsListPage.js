@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react';
+import dateFormat from 'dateformat';
 
 /*
 DRY Notes:
@@ -27,7 +28,15 @@ const TripsListPage = () => {
 
   return (
     <div>
-      Your Upcoming Trips
+      <div className='trips-list'>
+        {trips.map((trip, index) =>
+          <div key={index}>
+            <h3>{trip.destination}</h3>
+            <h4>Leaving: {dateFormat(trip.leave_date, "dddd, mmmm d, yyyy")}</h4>
+            <h4>Returning: {dateFormat(trip.return_date, "dddd, mmmm d, yyyy")}</h4>
+          </div>
+        )}
+      </div>
     </div>
   )
 }
