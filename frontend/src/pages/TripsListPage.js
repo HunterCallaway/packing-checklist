@@ -21,7 +21,7 @@ const TripsListPage = () => {
 
   //Returns all Trip instances.
   let getTrips = async () => {
-    let response = await fetch('http://127.0.0.1:8000/api/trips/');
+    let response = await fetch('/api/trips/');
     let data = await response.json();
     setTrips(data);
   };
