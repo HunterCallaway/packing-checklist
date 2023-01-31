@@ -19,8 +19,10 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Header />
-        <Route path="/" exact component={TripsListPage} />
-        <Route path="/trip/:id" component={TripPage} />
+        <div className='pt-5'>
+          <Route path="/" exact component={TripsListPage} />
+          <Route path="/trip/:id" component={TripPage} />
+        </div>
       </div>
     </BrowserRouter>
   );
