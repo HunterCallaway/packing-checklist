@@ -6,8 +6,8 @@ import Card from 'react-bootstrap/Card';
 
 const Trip = ({ trip }) => {
   return (
-    <div className='container text-center'>
-      <Card className='row justify-content-md-center'>
+    <div className='text-center py-2'>
+      <Card>
         <Card.Body>
           <Link to={`/trip/${trip.id}/`}>
             <h3>{trip.destination}</h3>

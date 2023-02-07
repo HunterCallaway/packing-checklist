@@ -17,11 +17,15 @@ Notes:
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
-        <Header />
-        <div className='pt-5'>
-          <Route path="/" exact component={TripsListPage} />
-          <Route path="/trip/:id" component={TripPage} />
+      <div className="App container">
+        <div className='row justify-content-center'>
+          <div className='col-10'>
+            <Header />
+          </div>
+          <div className='col-10'>
+            <Route path="/" exact component={TripsListPage} />
+            <Route path="/trip/:id" component={TripPage} />
+          </div>
         </div>
       </div>
     </BrowserRouter>
