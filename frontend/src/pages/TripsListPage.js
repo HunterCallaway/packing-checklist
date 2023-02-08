@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import Trip from '../components/Trip';
 
+import Card from 'react-bootstrap/Card';
+
 /*
 DRY Notes:
 1. Since there won't initially be any data,
@@ -27,12 +29,14 @@ const TripsListPage = () => {
   };
 
   return (
-    <div>
-      <div className='trips-list'>
-        {trips.map((trip, index) =>
-          <Trip key={index} trip={trip} />
-        )}
-      </div>
+    <div className='trips-list'>
+      {trips.map((trip, index) =>
+        <Card className='text-center my-3'>
+          <Card.Body>
+            <Trip key={index} trip={trip} />
+          </Card.Body>
+        </Card>
+      )}
     </div>
   )
 }
