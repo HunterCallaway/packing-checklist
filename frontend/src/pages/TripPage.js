@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import dateFormat from 'dateformat';
+import Trip from '../components/Trip';
+
+import Card from 'react-bootstrap/Card';
 
 /*
 Notes:
@@ -28,10 +30,12 @@ const TripPage = ({ match }) => {
   };
 
   return (
-    <div>
-      <h2>{trip?.destination}</h2>
-      <p>Leaving: {dateFormat(trip?.leave_date, "dddd, mmmm d, yyyy")}</p>
-      <p>Returning: {dateFormat(trip?.return_date, "dddd, mmmm d, yyyy")}</p>
+    <div className='my-5'>
+      <Card style={{height: '25rem'}} className='d-flex'>
+        <Card.Body className='align-items-center d-flex justify-content-center text-center'>
+          {trip ? <Trip trip={trip} /> : 'Hmmm. Something went wrong.' }
+        </Card.Body>
+      </Card>
     </div>
   )
 }

@@ -19,10 +19,10 @@ function App() {
     <BrowserRouter>
       <div className="App container">
         <div className='row justify-content-center'>
-          <div className='col-10'>
+          <div>
             <Header />
           </div>
-          <div className='col-10'>
+          <div>
             <Route path="/" exact component={TripsListPage} />
             <Route path="/trip/:id" component={TripPage} />
           </div>
