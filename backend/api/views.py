@@ -84,3 +84,22 @@ def get_trip(request, pk):
     trip = Trip.objects.get(id=pk)
     serializer = TripSerializer(trip, many=False)
     return Response(serializer.data)
+
+'''
+This view will update a specified Trip.
+For the serializer variable: 
+1. We are specifying the trip we are targeting
+   and then passing in the updated data.
+2. Validation is required when we deserialize data
+   and save an object instance.
+'''
+@api_view(['PUT'])
+def update_trip(request, pk):
+    data = request.data
+    trip = Trip.objects.get(id=pk)
+    serializer = TripSerializer(instance=trip, data=data)
+
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
