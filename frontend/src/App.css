@@ -5,3 +5,7 @@
   color: #33272a;
   scroll-behavior: smooth;
 }
+
+ion-icon {
+  font-size: 4rem;
+}
