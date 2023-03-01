@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Trip from '../components/Trip';
+import TripEditButton from '../components/TripEditButton';
 
 import Card from 'react-bootstrap/Card';
 
@@ -33,7 +34,12 @@ const TripPage = ({ match }) => {
     <div className='my-5'>
       <Card style={{height: '25rem'}} className='d-flex'>
         <Card.Body className='align-items-center d-flex justify-content-center text-center'>
-          {trip ? <Trip trip={trip} /> : 'Hmmm. Something went wrong.' }
+          {trip ?
+            <div>
+              <Trip trip={trip} />
+              <TripEditButton trip={trip} />
+            </div>
+          : 'Hmmm. Something went wrong.' }
         </Card.Body>
       </Card>
     </div>
