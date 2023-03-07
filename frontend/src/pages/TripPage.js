@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Trip from '../components/Trip';
-import TripEditButton from '../components/TripEditButton';
 
 import Card from 'react-bootstrap/Card';
 
@@ -24,10 +23,22 @@ const TripPage = ({ match }) => {
     getTrip();
   }, [tripId]);
 
+  //This function will retrieve a single, specified Trip.
   let getTrip = async () => {
     let response = await fetch(`/api/trips/${tripId}/`);
     let data = await response.json();
     setTrip(data);
+  };
+
+  //This function will save any changes to the backend.
+  let updateTrip = async () => {
+    fetch(`/api/trips/${tripId}/update/`, {
+      method: "PUT",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(trip)
+    });
   };
 
   return (
@@ -37,7 +48,6 @@ const TripPage = ({ match }) => {
           {trip ?
             <div>
               <Trip trip={trip} />
-              <TripEditButton trip={trip} />
             </div>
           : 'Hmmm. Something went wrong.' }
         </Card.Body>

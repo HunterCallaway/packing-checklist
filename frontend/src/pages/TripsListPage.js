@@ -3,6 +3,8 @@ import Trip from '../components/Trip';
 
 import Card from 'react-bootstrap/Card';
 
+import { Link } from 'react-router-dom';
+
 /*
 DRY Notes:
 1. Since there won't initially be any data,
@@ -35,7 +37,9 @@ const TripsListPage = () => {
         {trips.map((trip, index) =>
           <Card className='text-center my-3'>
             <Card.Body>
-              <Trip key={index} trip={trip} />
+              <Link to={`/trip/${trip.id}/`}>
+                <Trip key={index} trip={trip} />
+              </Link>
             </Card.Body>
           </Card>
         )}
