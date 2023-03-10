@@ -4,6 +4,7 @@ import './App.css';
 import Header from './components/Header';
 import TripsListPage from './pages/TripsListPage';
 import TripPage from './pages/TripPage';
+import TripEditor from './components/TripEditor';
 
 /*
 Notes:
@@ -25,6 +26,7 @@ function App() {
           <div>
             <Route path="/" exact component={TripsListPage} />
             <Route path="/trip/:id" component={TripPage} />
+            <Route path="/trip/:id/update" component={TripEditor} />
           </div>
         </div>
       </div>

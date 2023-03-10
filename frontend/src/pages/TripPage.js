@@ -30,17 +30,6 @@ const TripPage = ({ match }) => {
     setTrip(data);
   };
 
-  //This function will save any changes to the backend.
-  let updateTrip = async () => {
-    fetch(`/api/trips/${tripId}/update/`, {
-      method: "PUT",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(trip)
-    });
-  };
-
   return (
     <div className='my-5'>
       <Card style={{height: '25rem'}} className='d-flex'>
