@@ -5,7 +5,7 @@ const Header = () => {
     
       <div className='text-center mt-3 mb-4'>
         <h1>
-        Packing Checklist App
+          Packing Lister
         </h1>
       </div>
     

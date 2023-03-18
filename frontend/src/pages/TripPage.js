@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, useTransition } from 'react';
 import Trip from '../components/Trip';
+import TripEditButton from '../components/TripEditButton';
 
 import Card from 'react-bootstrap/Card';
+
+const TripEditorComponent = lazy(() => import('../components/TripEditor'));
 
 /*
 Notes:
@@ -19,6 +22,10 @@ const TripPage = ({ match }) => {
 
   let [trip, setTrip] = useState(null);
 
+  const [, startTransition] = useTransition();
+
+  const [load, setLoad] = useState(false);
+
   useEffect(() => {
     getTrip();
   }, [tripId]);
@@ -30,6 +37,17 @@ const TripPage = ({ match }) => {
     setTrip(data);
   };
 
+   //This function will save any changes to the backend.
+  let updateTrip = async () => {
+    fetch(`/api/trips/${tripId}/update/`, {
+      method: "PUT",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(trip)
+    });
+  };
+
   return (
     <div className='my-5'>
       <Card style={{height: '25rem'}} className='d-flex'>
@@ -37,8 +55,16 @@ const TripPage = ({ match }) => {
           {trip ?
             <div>
               <Trip trip={trip} />
+              <button
+                onClick={() => {
+                  startTransition(() => setLoad(true))
+                }}
+              >
+                <TripEditButton />
+              </button>
+              {load && <TripEditorComponent trip={trip} />}
             </div>
-          : 'Hmmm. Something went wrong.' }
+            : 'Hmmm. Something went wrong.' }
         </Card.Body>
       </Card>
     </div>
