@@ -35,10 +35,10 @@ const TripsListPage = () => {
       <div className='trips-header text-center fw-bold fs-1'>My Trips</div>
       <div className='trips-list'>
         {trips.map((trip, index) =>
-          <Card className='text-center my-3'>
+          <Card className='text-center my-3' key={index}>
             <Card.Body>
               <Link to={`/trip/${trip.id}/`}>
-                <Trip key={index} trip={trip} />
+                <Trip trip={trip} />
               </Link>
             </Card.Body>
           </Card>
