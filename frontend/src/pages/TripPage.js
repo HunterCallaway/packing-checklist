@@ -5,8 +5,6 @@ import TripEditButton from '../components/TripEditButton';
 
 import Card from 'react-bootstrap/Card';
 
-// const TripEditorComponent = lazy(() => import('../components/TripEditor'));
-
 /*
 Notes:
 1. `match` objects contain information about how a <Route path>
