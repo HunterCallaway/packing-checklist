@@ -1,24 +1,39 @@
-import React, {useState} from 'react'
+import React, { useEffect, useState } from 'react'
 
 import Form from 'react-bootstrap/Form';
-
-import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
-
-import dateFormat from 'dateformat';
+import Button from 'react-bootstrap/Button';
 
 
-const TripEditor = ({ trip }) => {
+const TripEditor = ({ trip, handleSubmit, displayUpdatedTrips }) => {
 
-  const [destination, setDestination] = useState(trip.destination);
+  const [destination, setDestination] = useState('');
 
-  const [leaveDate, setLeaveDate] = useState(new Date(trip.leave_date));
+  const [leaveDate, setLeaveDate] = useState('');
 
-  const [returnDate, setReturnDate] = useState(new Date(trip.return_date));
+  const [returnDate, setReturnDate] = useState('');
+
+  useEffect(() => {
+    if(trip) {
+      setDestination(trip.destination);
+      setLeaveDate(trip.leave_date);
+      setReturnDate(trip.return_date)
+    }
+  }, [trip]);
+
+  const onTrigger = (e) => {
+    e.preventDefault();
+    //Pass the updated values as an argument 
+    // to TripPage's `handleSubmit` function.
+    handleSubmit({destination, leaveDate, returnDate});
+
+    //Call the callback function passed from TripsListPage
+    // (the `getTrips()` function) to fetch the updated trips.
+    displayUpdatedTrips();
+  };
 
   return (
     <div className="row">
-      <Form>
+      <Form id="trip-update" onSubmit={onTrigger}>
         <Form.Group className="mb-2">
           <h2>
             <Form.Label>
@@ -26,10 +41,11 @@ const TripEditor = ({ trip }) => {
             </Form.Label>
           </h2>
           <Form.Control
-          size="lg" 
-          type="text" 
-          placeholder={destination} 
-          onChange={e => setDestination(e.target.value)} 
+          size="lg"
+          value={destination}
+          onChange={e =>
+            setDestination(e.target.value)
+          }
           />
         </Form.Group>
         <Form.Group className='mb-3'>
@@ -38,13 +54,13 @@ const TripEditor = ({ trip }) => {
               Leave Date
             </Form.Label>
           </h2>
-            <DatePicker
-            showPopperArrow={false}
-            onChange={(date) => setLeaveDate(date)}
-            selected={leaveDate}
-            dateFormat="MMMM d, yyyy"
-            className="leave-date-calendar"
-            />
+          <Form.Control
+          size="lg"
+          value={leaveDate}
+          onChange={e => 
+            setLeaveDate(e.target.value)
+          }
+          />
         </Form.Group>
         <Form.Group>
           <h2>
@@ -52,14 +68,18 @@ const TripEditor = ({ trip }) => {
               Return Date
             </Form.Label>
           </h2>
-          <DatePicker
-          showPopperArrow={false} 
-          onChange={(date) => setReturnDate(date)}
-          selected={returnDate}
-          dateFormat="MMMM d, yyyy"
-          className="return-date-calendar"
+          <Form.Control
+          size="lg" 
+          value={returnDate}
+          onChange={e => 
+            setReturnDate(e.target.value)
+          }
           />
         </Form.Group>
+        <Button
+         className="custom-button mt-3" 
+         type="submit"
+         >Update Your Trip</Button>
       </Form>
     </div>
   )

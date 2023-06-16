@@ -19,16 +19,20 @@ const TripsListPage = () => {
 
   let [trips, setTrips] = useState([]);
 
+  //Returns all Trip instances.
+  let getTrips = async () => {
+    try {
+      let response = await fetch('/api/trips/');
+      let data = await response.json();
+      setTrips(data);
+    } catch(error) {
+      console.error('Error fetching trips: ', error)
+    }
+  };
+
   useEffect(() => {
     getTrips();
   }, []);
-
-  //Returns all Trip instances.
-  let getTrips = async () => {
-    let response = await fetch('/api/trips/');
-    let data = await response.json();
-    setTrips(data);
-  };
 
   return (
     <div className='trips'>
@@ -38,7 +42,7 @@ const TripsListPage = () => {
           <Card className='text-center my-3' key={index}>
             <Card.Body>
               <Link to={`/trip/${trip.id}/`}>
-                <Trip trip={trip} />
+                <Trip trip={trip} getTrips={getTrips} />
               </Link>
             </Card.Body>
           </Card>
