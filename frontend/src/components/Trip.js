@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const Trip = ({ trip, getTrips }) => {
+const Trip = ({ trip }) => {
   return (
     <div>
       <div className='fs-1 fw-bold'>{trip.destination}</div>

@@ -42,7 +42,7 @@ const TripsListPage = () => {
           <Card className='text-center my-3' key={index}>
             <Card.Body>
               <Link to={`/trip/${trip.id}/`}>
-                <Trip trip={trip} getTrips={getTrips} />
+                <Trip trip={trip} />
               </Link>
             </Card.Body>
           </Card>

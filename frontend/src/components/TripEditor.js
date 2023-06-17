@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 
-const TripEditor = ({ trip, handleSubmit, displayUpdatedTrips }) => {
+const TripEditor = ({ trip, handleSubmit }) => {
 
   const [destination, setDestination] = useState('');
 
@@ -25,10 +25,6 @@ const TripEditor = ({ trip, handleSubmit, displayUpdatedTrips }) => {
     //Pass the updated values as an argument 
     // to TripPage's `handleSubmit` function.
     handleSubmit({destination, leaveDate, returnDate});
-
-    //Call the callback function passed from TripsListPage
-    // (the `getTrips()` function) to fetch the updated trips.
-    displayUpdatedTrips();
   };
 
   return (

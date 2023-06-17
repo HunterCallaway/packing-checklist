@@ -26,7 +26,7 @@ function App() {
           </div>
           <div>
             <Route path="/" exact component={TripsListPage} />
-            <Route path="/trip/:id" component={TripPage} />
+            <Route path="/trip/:id" render={(props) => <TripPage {...props} />} />
           </div>
         </div>
       </div>

@@ -56,10 +56,10 @@ const TripPage = ({ match, history, getTrips }) => {
         body: JSON.stringify(updatedTrip)
       });
       if(response.ok) {
-        //Success. Handle the response.
-        console.log('The trip was updated successfully.');
         //Update the trip object in the local state.
         setTrip(updatedTrip);
+        //Redirect to the TripsListPage after updating the Trip.
+        history.push('/');
       } else {
         //Handle the error case if necessary.
         console.log('Failed to update the trip.')
@@ -70,14 +70,6 @@ const TripPage = ({ match, history, getTrips }) => {
     }
   };
 
-  /*
-  1a. react-router-dom gives us access to the `history` object.
-    b. After any submission the user will be taken back to home.
-  */
-  let handleSubmit = (updatedValues) => {
-    updateTrip(updatedValues);
-    history.push('/');
-  }
 
   return (
     <div className='my-5'>
@@ -97,7 +89,7 @@ const TripPage = ({ match, history, getTrips }) => {
               </div>
             )
         }
-          {load==='edit-trip' && <TripEditor trip={trip} handleSubmit={handleSubmit} displayUpdatedTrips={getTrips} />}
+          {load==='edit-trip' && <TripEditor trip={trip} handleSubmit={updateTrip} />}
         </Card.Body>
       </Card>
     </div>
