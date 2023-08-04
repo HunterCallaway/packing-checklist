@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Trip from '../components/Trip';
 import TripEditor from '../components/TripEditor'
 import TripEditButton from '../components/TripEditButton';
+import TripDeleteButton from '../components/TripDeleteButton';
 
 import Card from 'react-bootstrap/Card';
 
@@ -70,6 +71,15 @@ const TripPage = ({ match, history, getTrips }) => {
     }
   };
 
+  //This function will delete a Trip from the database.
+  let deleteTrip = async () => {
+    fetch(`/api/trips/${tripId}/delete/`, {
+      method: "DELETE",
+      headers: {'Content-Type': 'application/json; charset=utf-8'}
+    });
+    history.push('/'); 
+  };
+
 
   return (
     <div className='my-5'>
@@ -85,6 +95,11 @@ const TripPage = ({ match, history, getTrips }) => {
                   }}
                 >
                   <TripEditButton />
+                </button>
+                <button
+                  onClick={deleteTrip}
+                >
+                  <TripDeleteButton />
                 </button>
               </div>
             )

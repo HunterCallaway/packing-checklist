@@ -103,3 +103,12 @@ def update_trip(request, pk):
         serializer.save()
 
     return Response(serializer.data)
+
+'''
+This method will allow the user to delete a specified Trip.
+'''
+@api_view(['DELETE'])
+def delete_trip(request, pk):
+    trip = Trip.objects.get(id=pk)
+    trip.delete()
+    return Response('The trip was deleted.')
