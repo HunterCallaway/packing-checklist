@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+
 import Trip from '../components/Trip';
 import TripEditor from '../components/TripEditor'
 import TripEditButton from '../components/TripEditButton';
 import TripDeleteButton from '../components/TripDeleteButton';
+import DeleteConfirmation from '../components/DeleteConfirmation';
 
 import Card from 'react-bootstrap/Card';
 
@@ -19,13 +21,18 @@ Notes:
      and TripEditor will be rendered.
 */
 
-const TripPage = ({ match, history, getTrips }) => {
+const TripPage = ({ match, history }) => {
 
   let tripId = match.params.id;
 
-  let [trip, setTrip] = useState(null);
+  const [trip, setTrip] = useState(null);
 
   const [load, setLoad] = useState('start');
+
+  //The following functions are related to the DeleteConfirmation modal.
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleOpen = () => setShow(true);
 
   //This function will retrieve a single, specified Trip.
   let getTrip = async () => {
@@ -97,10 +104,15 @@ const TripPage = ({ match, history, getTrips }) => {
                   <TripEditButton />
                 </button>
                 <button
-                  onClick={deleteTrip}
+                  onClick={handleOpen}
                 >
                   <TripDeleteButton />
                 </button>
+                <DeleteConfirmation
+                  show={show} 
+                  deleteTrip={deleteTrip}
+                  handleClose={handleClose} 
+                />
               </div>
             )
         }
